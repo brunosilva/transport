@@ -1,0 +1,72 @@
+<% content_for :title, "Vehicles" %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div>
+    <h1 class="font-bold text-4xl">Conjunto</h1>
+    <%= link_to "Novo", new_vehicle_path, class: "btn btn-primary" %>
+  </div>
+
+  <div id="vehicles" class="min-w-full divide-y divide-gray-200 space-y-5">
+
+
+  <% if @vehicles.any? %>
+    <% @vehicles.each do |vehicle| %>
+      <div class="card mt-3">
+        <div class="card-header">
+          <%= vehicle.id %> - <%= vehicle.name %>
+        </div>
+        <div class="card-body" style="display: flex;">
+          <div class="truck p-2">
+            <%= render'table_row', vehicle: vehicle %>
+          </div>
+          <div class="mx-2">
+            <%= link_to "Vincular reboque", new_trailer_path, class: "btn btn-success", data: { bs_toggle: "modal", bs_target: "#exampleModal" } %>
+
+            <div class="trailer-name mt-3">
+              <%= vehicle.trailer.name %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <%= form_with(model: vehicle, method: :put) do |form| %>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= form.collection_radio_buttons :trailer_id, @trailers, :id, :name do |b| %>
+                    <% b.label class: "row" do %>
+                      <div class="col">
+                        <%= b.radio_button %>
+                        <%= b.text %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="text-center my-10">Nenhum veiculo cadastrado.</p>
+  <% end %>
+
+
+
+
+  </div>
+</div>

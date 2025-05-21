@@ -1,0 +1,38 @@
+<%= form_with(model: travel, class: "contents") do |form| %>
+  <% if travel.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% travel.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="form-group">
+    <%= form.label :vehicle_id, style: "display: block" %>
+    <%= form.select :vehicle_id, @vehicles.map{|vehicle| [vehicle.name, vehicle.id]}, include_blank: 'Selecione' %>
+  </div>
+
+  <div class="form-group mt-2">
+    <%= form.label :start_in %>
+    <%= form.text_field :start_in, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-2">
+    <%= form.label :finished_in %>
+    <%= form.text_field :finished_in, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mt-2">
+    <%= form.label :end_at %>
+    <%= form.date_field :end_at, class: 'form-control' %>
+  </div>
+
+  <div class="inline mt-2">
+    <%= form.submit 'Salvar viagem', class: 'btn btn-primary' %>
+  </div>
+<% end %>

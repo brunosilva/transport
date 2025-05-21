@@ -1,0 +1,18 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <%= truck.name %>
+  </div>
+  <div class="card-body">
+    <%= truck.model %> - <%= truck.plate %>
+
+    <div class="row">
+      <%= truck.description %>
+    </div>
+
+    <div class="flex">
+      <%= link_to "Show", truck %>
+      <%= link_to "Edit", edit_truck_path(truck) %>
+      <%= button_to "Destroy", truck, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<h4 class="card-text"><%= travel.start_in %> - <%= travel.vehicle.name %></h4>
+<p class="card-text">Inicio em: <%= travel.created_at %></p>
+
+<div class="flex">
+    <%= link_to "Editar", edit_travel_path(travel), class: "btn btn-info" %>
+    <%= button_to "Excluir", travel, method: :delete, class: "btn btn-danger mx-2", data: { turbo_confirm: "Are you sure?" } %>
+</div>

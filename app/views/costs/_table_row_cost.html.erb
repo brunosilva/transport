@@ -1,0 +1,38 @@
+<div class="row">
+  <% if credits.any? %>
+    <% credits.each do |credit| %>
+      <div class="space-between">
+        <span class="cost-name"><%= credit.cost_type.name %> </span><span class="cost-value"><%= number_to_currency(credit.value, locale: 'pt-BR') %></span>
+        <div class="flex">
+          <%= link_to "Edit", edit_cost_path(credit)  %>
+            <%= button_to "Destroy", credit, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </div>
+      </div>
+    <% end %>
+    <div class="sum-costs"><span class="cost-name">Total créditos:</span> <span><%= number_to_currency(credits.sum(:value), locale: 'pt-BR') %></span></div>
+  <% else %>
+    <p class="text-center my-10">No costs found.</p>
+  <% end %>
+</div>
+
+
+<div class="row mt-3">
+  <% if costs.any? %>
+    <% costs.each do |cost| %>
+      <div class="space-between">
+        <span class="cost-name"><%= cost.cost_type.name %> </span><span class="cost-value"><%= number_to_currency(cost.value, locale: 'pt-BR') %></span>
+        <div class="flex">
+          <%= link_to "Edit", edit_cost_path(cost)  %>
+            <%= button_to "Destroy", cost, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+        </div>
+      </div>
+    <% end %>
+    <div class="sum-costs"><span class="cost-name">Total débitos:</span> <span><%= number_to_currency(costs.sum(:value), locale: 'pt-BR') %></span></div>
+  <% else %>
+    <p class="text-center my-10">No costs found.</p>
+  <% end %>
+</div>
+
+<div class="row mt-3">
+  <div class="sum-costs"><span class="cost-name">Total:</span> <span><%= number_to_currency(credits.sum(:value) - costs.sum(:value), locale: 'pt-BR') %></span></div>
+</div>

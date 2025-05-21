@@ -1,0 +1,18 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <%= trailer.name %>
+  </div>
+  <div class="card-body">
+    <%= trailer.model %> - <%= trailer.plate %>
+
+    <div class="row">
+      <%= trailer.description %>
+    </div>
+
+    <div class="flex">
+      <%= link_to "Show", trailer %>
+      <%= link_to "Edit", edit_trailer_path(trailer) %>
+      <%= button_to "Destroy", trailer, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+
+<% trailers.each do |trailer| %>
+  <%= form.radio_button :trailer_id, trailer.id do %>
+    <%= form.label :trailer_id, trailer.name %>
+  <% end %>
+<% end %>
+
+
+
