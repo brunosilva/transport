@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_21_145022) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_23_182102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_21_145022) do
     t.datetime "updated_at", null: false
     t.bigint "cost_type_id", null: false
     t.bigint "travel_id"
+    t.integer "created_by"
     t.index ["cost_type_id"], name: "index_costs_on_cost_type_id"
     t.index ["travel_id"], name: "index_costs_on_travel_id"
   end

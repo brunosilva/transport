@@ -24,6 +24,7 @@ class CostsController < ApplicationController
   # POST /costs or /costs.json
   def create
     @cost = Cost.new(cost_params)
+    @cost.created_by = current_user.id
 
     respond_to do |format|
       if @cost.save

@@ -36,7 +36,7 @@ pt-BR:
       company:
         name: 'Nome'
       travel:
-        vehicle: 'Veículo'
+        vehicle_id: 'Veículo'
         start_in: 'Inicio em'
         finished_in: 'Finaliza em'
         end_at: 'Data fim'
