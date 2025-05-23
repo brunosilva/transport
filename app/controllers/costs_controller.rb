@@ -27,7 +27,7 @@ class CostsController < ApplicationController
 
     respond_to do |format|
       if @cost.save
-        redirect_to @cost, notice: "Cost was successfully created."
+        format.html { redirect_to edit_travel_path(@cost.travel), notice: "Cost was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @cost.errors, status: :unprocessable_entity }

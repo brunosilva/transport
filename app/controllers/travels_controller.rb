@@ -39,7 +39,7 @@ class TravelsController < ApplicationController
   def update
     respond_to do |format|
       if @travel.update(travel_params)
-        format.html { redirect_to @travel, notice: "Travel was successfully updated." }
+        format.html { redirect_to travels_path, notice: "Travel was successfully updated." }
         format.json { render :show, status: :ok, location: @travel }
       else
         format.html { render :edit, status: :unprocessable_entity }
